@@ -12,18 +12,18 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "reparatur")
 public class Reparatur extends BasePersistable{
-	private static final long serialVersionUID;
+	private static final long serialVersionUID = 1L;
 	
 	@NotNull
-    @Column(name = "name", nullable = false)
-	private int id;
+    @Column(name = "rId", nullable = false)
+	private int rId;
 	
 	@NotNull
     @Column(name = "preis", nullable = false)
 	private double preis;
 	
 	@NotNull
-    @Column(name = "name", nullable = false)
+    @Column(name = "selbstkosten", nullable = false)
 	private double selbstkosten;
 	
 	@NotNull
@@ -51,10 +51,10 @@ public class Reparatur extends BasePersistable{
 	@ManyToOne
 	private Automarke automarke;
 	
-	public Reparatur(int id, double preis, double selbstkosten, Date eingangsdatum,
+	public Reparatur(int rId, double preis, double selbstkosten, Date eingangsdatum,
 						Date retourgabedatum, int reparaturen, int services, Kunde kunde,
 						Mitarbeiter mitarbeiter, Automarke automarke){
-		setId(id);
+		setRId(rId);
 		setPreis(preis);
 		setSelbstkosten(selbstkosten);
 		setEingangsdatum(eingangsdatum);
@@ -66,12 +66,12 @@ public class Reparatur extends BasePersistable{
 		setAutomarke(automarke);
 	}
 
-	public int getId() {
-		return id;
+	public int getRId() {
+		return rId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setRId(int rId) {
+		this.rId = rId;
 	}
 
 	public double getPreis() {

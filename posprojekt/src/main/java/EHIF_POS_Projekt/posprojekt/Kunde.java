@@ -16,8 +16,8 @@ public class Kunde extends Person{
 	private static final long serialVersionUID = 1L;
 
 	@NotNull
-    @Column(name = "kid", nullable = false)
-	private int kid;
+    @Column(name = "kId", nullable = false)
+	private int kId;
 	
 	@Size(max = 30)
 	@NotNull
@@ -35,20 +35,20 @@ public class Kunde extends Person{
 	@OneToMany(targetEntity=Reparatur.class, mappedBy="kunde")
 	private Collection<Reparatur> reparaturen;
 	
-	public Kunde(int kid, String name, String adresse, int plz, boolean geschlecht){
+	public Kunde(int kId, String name, String adresse, int plz, boolean geschlecht){
 		super(name);
-		setKid(kid);
+		setKid(kId);
 		setAdresse(adresse);
 		setPlz(plz);
 		setGeschlecht(geschlecht);
 	}
 
-	public int getKid() {
-		return kid;
+	public int getKId() {
+		return kId;
 	}
 
-	public void setKid(int kid) {
-		this.kid = kid;
+	public void setKid(int kId) {
+		this.kId = kId;
 	}
 
 	public String getAdresse() {

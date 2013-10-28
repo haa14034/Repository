@@ -16,8 +16,8 @@ public class Mitarbeiter extends Person{
 	private static final long serialVersionUID = 1L;
 
 	@NotNull
-    @Column(name = "mid", nullable = false)
-	private int mid;
+    @Column(name = "mId", nullable = false)
+	private int mId;
 	
 	@NotNull
     @Column(name = "lohn", nullable = false)
@@ -31,19 +31,19 @@ public class Mitarbeiter extends Person{
 	@OneToMany(targetEntity=Reparatur.class, mappedBy="mitarbeiter")
 	private Collection<Reparatur> reparaturen;
 	
-	public Mitarbeiter(int mid, String name, double lohn, String spezialisierung){
+	public Mitarbeiter(int mId, String name, double lohn, String spezialisierung){
 		super(name);
-		setMid(mid);
+		setMId(mId);
 		setLohn(lohn);
 		setSpezialisierung(spezialisierung);
 	}
 
-	public int getMid() {
-		return mid;
+	public int getMId() {
+		return mId;
 	}
 
-	public void setMid(int mid) {
-		this.mid = mid;
+	public void setMId(int mId) {
+		this.mId = mId;
 	}
 
 	public double getLohn() {
