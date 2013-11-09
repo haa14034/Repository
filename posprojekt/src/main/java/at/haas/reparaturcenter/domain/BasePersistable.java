@@ -1,4 +1,4 @@
-package EHIF_POS_Projekt.posprojekt;
+package at.haas.reparaturcenter.domain;
 
 import java.io.Serializable;
 
