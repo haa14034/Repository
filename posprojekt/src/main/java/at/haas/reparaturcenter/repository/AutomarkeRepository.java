@@ -1,21 +1,18 @@
 package at.haas.reparaturcenter.repository;
 
 import java.util.List;
-import javax.persistence.EntityManager;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
 import at.haas.reparaturcenter.domain.Automarke;
 
-public class AutomarkeRepository extends AbstractJpaRepository<Automarke> {
 
-	public AutomarkeRepository(EntityManager entityManager) {
-		super(entityManager);
-	}
-	
-	public List<Automarke> findAll() {
-        return entityManager().createQuery("SELECT am FROM Automarke am", Automarke.class).getResultList();
-    }
+@Repository
+public interface AutomarkeRepository extends CrudRepository<Automarke, Long> {
 
-    public Automarke findById(Long id) {
-        return entityManager().find(Automarke.class, id);
-    }
+    List<Automarke> findByMarke(String marke);
 
+    List<Automarke> findByGruppe(String gruppe);
+    
+    List<Automarke> findByAnfangsjahrgang(int anfangsjahrgang);
 }

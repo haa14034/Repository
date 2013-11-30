@@ -1,20 +1,21 @@
 package at.haas.reparaturcenter.repository;
 
 import java.util.List;
-import javax.persistence.EntityManager;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
 import at.haas.reparaturcenter.domain.Kunde;
 
-public class KundeRepository extends AbstractJpaRepository<Kunde> {
 
-	public KundeRepository(EntityManager entityManager) {
-		super(entityManager);
-	}
-	
-	public List<Kunde> findAll() {
-        return entityManager().createQuery("SELECT k FROM Kunde k", Kunde.class).getResultList();
-    }
+@Repository
+public interface KundeRepository extends CrudRepository<Kunde, Long> {
 
-    public Kunde findById(Long id) {
-        return entityManager().find(Kunde.class, id);
-    }
+    List<Kunde> findByName(String name);
+
+    List<Kunde> findByAdresse(String adresse);
+    
+    List<Kunde> findByPlz(int plz);
+    
+    List<Kunde> findByGeschlecht(boolean geschlecht);
 }

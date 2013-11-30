@@ -1,63 +1,55 @@
 package at.haas.reparaturcenter.app;
 
 import java.util.HashMap;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import at.grueneis.timetable.repositoryjpa.ClassRoomRepository;
-import at.grueneis.timetable.repositoryjpa.CurriculumRepository;
-import at.grueneis.timetable.repositoryjpa.CurriculumSubjectRepository;
-import at.grueneis.timetable.repositoryjpa.SchoolClassRepository;
-import at.grueneis.timetable.repositoryjpa.SubjectRepository;
-import at.grueneis.timetable.repositoryjpa.TeacherRepository;
-import at.grueneis.timetable.repositoryjpa.TeachingUnitRepository;
-import at.haas.reparaturcenter.repository.*;
+import at.haas.reparaturcenter.repositoryjpa.*;
 
 public class PersistenceFactoryImpl implements PersistenceFactory {
-	private EntityManagerFactory entityManagerFactory;
-    private EntityManager entityManager;
-    private final HashMap<Class<?>, JpaRepository> repositories = new HashMap<>();
-    
-    public void setup() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("spengergassePU");
-        entityManager = entityManagerFactory.createEntityManager();
+	private final HashMap<Class<?>, JpaRepository> repositories = new HashMap<>();
 
-        repositories.put(AutomarkeRepository.class, new AutomarkeRepository(entityManager));
-        repositories.put(KundeRepository.class, new KundeRepository(entityManager));
-        repositories.put(MitarbeiterRepository.class, new MitarbeiterRepository(entityManager));
-        repositories.put(PersonRepository.class, new PersonRepository(entityManager));
-        repositories.put(ReparaturRepository.class, new ReparaturRepository(entityManager));;
+    public PersistenceFactoryImpl(EntityManager entityManager) {
+    	AutomarkeJpaRepository automarkeRepository = new AutomarkeJpaRepository();
+    	automarkeRepository.setEntityManager(entityManager);
+        repositories.put(AutomarkeJpaRepository.class, automarkeRepository);
+
+        KundeJpaRepository kundeRepository = new KundeJpaRepository();
+        kundeRepository.setEntityManager(entityManager);
+        repositories.put(KundeJpaRepository.class, kundeRepository);
+
+        MitarbeiterJpaRepository mitarbeiterRepository = new MitarbeiterJpaRepository();
+        mitarbeiterRepository.setEntityManager(entityManager);
+        repositories.put(MitarbeiterJpaRepository.class, mitarbeiterRepository);
+
+        PersonJpaRepository personRepository = new PersonJpaRepository();
+        personRepository.setEntityManager(entityManager);
+        repositories.put(PersonJpaRepository.class, personRepository);
+
+        ReparaturJpaRepository reparaturRepository = new ReparaturJpaRepository();
+        reparaturRepository.setEntityManager(entityManager);
+        repositories.put(ReparaturJpaRepository.class, reparaturRepository);
     }
-	
-    public void teardown() {
-        if (entityManager != null) {
-            entityManager.close();
-        }
-        if (entityManagerFactory != null) {
-            entityManagerFactory.close();
-        }
-    }
     
-    public AutomarkeRepository automarkeRepository() {
-		return (AutomarkeRepository)repositories.get(AutomarkeRepository.class);
+    public AutomarkeJpaRepository automarkeRepository() {
+		return (AutomarkeJpaRepository)repositories.get(AutomarkeJpaRepository.class);
 	}
 
-    public KundeRepository kundeRepository() {
-    	return (KundeRepository)repositories.get(KundeRepository.class);
+    public KundeJpaRepository kundeRepository() {
+    	return (KundeJpaRepository)repositories.get(KundeJpaRepository.class);
 	}
 
-    public MitarbeiterRepository mitarbeiterRepository() {
-    	return (MitarbeiterRepository)repositories.get(MitarbeiterRepository.class);
+    public MitarbeiterJpaRepository mitarbeiterRepository() {
+    	return (MitarbeiterJpaRepository)repositories.get(MitarbeiterJpaRepository.class);
 	}
 
-    public PersonRepository personRepository() {
-    	return (PersonRepository)repositories.get(PersonRepository.class);
+    public PersonJpaRepository personRepository() {
+    	return (PersonJpaRepository)repositories.get(PersonJpaRepository.class);
 	}
 
-    public ReparaturRepository reparaturRepository() {
-    	return (ReparaturRepository)repositories.get(ReparaturRepository.class);
+    public ReparaturJpaRepository reparaturRepository() {
+    	return (ReparaturJpaRepository)repositories.get(ReparaturJpaRepository.class);
 	}
 
 }

@@ -1,7 +1,9 @@
-package at.haas.reparaturcenter.repository;
+package at.haas.reparaturcenter.repositoryjpa;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,17 +11,18 @@ import at.haas.reparaturcenter.domain.BasePersistable;
 
 public abstract class AbstractJpaRepository<T extends BasePersistable> implements JpaRepository {
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
-    private final EntityManager entityManager;
-    
-    public AbstractJpaRepository(EntityManager entityManager) {
-        if (entityManager == null) {
-            throw new IllegalArgumentException("An entityManager must be specified.");
-        }
-        this.entityManager = entityManager;
-    }
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    public AbstractJpaRepository() {}
 
     protected EntityManager entityManager() {
         return entityManager;
+    }
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
     public abstract List<T> findAll();

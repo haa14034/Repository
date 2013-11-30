@@ -1,23 +1,25 @@
 package at.haas.reparaturcenter.repository;
 
+import java.sql.Date;
 import java.util.List;
 
-import javax.persistence.EntityManager;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import at.haas.reparaturcenter.domain.Reparatur;
 
-public class ReparaturRepository extends AbstractJpaRepository<Reparatur> {
+@Repository
+public interface ReparaturRepository extends CrudRepository<Reparatur, Long> {
 
-	public ReparaturRepository(EntityManager entityManager) {
-		super(entityManager);
-	}
-	
-	public List<Reparatur> findAll() {
-        return entityManager().createQuery("SELECT r FROM Reparatur r", Reparatur.class).getResultList();
-    }
+    List<Reparatur> findByPreis(double preis);
 
-    public Reparatur findById(Long id) {
-        return entityManager().find(Reparatur.class, id);
-    }
+    List<Reparatur> findBySelbstkosten(double selbstkosten);
 
+    List<Reparatur> findByEingangsdatum(Date eingangsdatum);
+    
+    List<Reparatur> findByRetourgabedatum(Date retourgabedatum);
+
+    List<Reparatur> findByReparaturen(int reparaturen);
+    
+    List<Reparatur> findByServices(int services);
 }

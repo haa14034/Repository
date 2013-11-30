@@ -2,21 +2,19 @@ package at.haas.reparaturcenter.repository;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import at.haas.reparaturcenter.domain.Mitarbeiter;
 
-public class MitarbeiterRepository extends AbstractJpaRepository<Mitarbeiter> {
 
-	public MitarbeiterRepository(EntityManager entityManager) {
-		super(entityManager);
-	}
-	
-	public List<Mitarbeiter> findAll() {
-        return entityManager().createQuery("SELECT ma FROM Mitarbeiter ma", Mitarbeiter.class).getResultList();
-    }
+@Repository
+public interface MitarbeiterRepository extends CrudRepository<Mitarbeiter, Long> {
 
-    public Mitarbeiter findById(Long id) {
-        return entityManager().find(Mitarbeiter.class, id);
-    }
+    List<Mitarbeiter> findByName(String name);
+
+    List<Mitarbeiter> findByLohn(double lohn);
+
+    List<Mitarbeiter> findBySpezialisierung(String spezialisierung);
+
 }
