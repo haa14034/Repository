@@ -11,7 +11,7 @@ public class ReparaturcenterManagementService {
 	@Autowired
 	private KundeJpaRepository kundeRepository;
 
-	public void createNewTeacher(int kId, String name ,String adresse, int plz, boolean geschlecht) {
+	public void createNewKunde(int kId, String name ,String adresse, int plz, boolean geschlecht) {
 		// start transaction
 		// write audit log
 		Kunde kunde = new Kunde(kId, name, adresse, plz, geschlecht);

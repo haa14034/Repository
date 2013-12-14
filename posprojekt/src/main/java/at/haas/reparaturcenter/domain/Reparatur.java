@@ -1,7 +1,7 @@
 package at.haas.reparaturcenter.domain;
 
 
-import java.sql.Date;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
