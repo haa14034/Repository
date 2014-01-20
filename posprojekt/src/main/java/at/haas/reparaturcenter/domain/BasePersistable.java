@@ -52,4 +52,3 @@ public abstract class BasePersistable implements Serializable {
                 return this.getClass().getSimpleName() + "[Id=" + getId() + "]";
         }
 }
-}

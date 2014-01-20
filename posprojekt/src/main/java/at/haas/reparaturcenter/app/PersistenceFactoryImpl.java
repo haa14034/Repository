@@ -8,7 +8,7 @@ import javax.persistence.Persistence;
 import at.haas.reparaturcenter.repositoryjpa.*;
 
 public class PersistenceFactoryImpl implements PersistenceFactory {
-	private final HashMap<Class<?>, JpaRepository> repositories = new HashMap<>();
+	private final HashMap<Class<?>, JpaRepository> repositories = new HashMap<Class<?>, JpaRepository>();
 
     public PersistenceFactoryImpl(EntityManager entityManager) {
     	AutomarkeJpaRepository automarkeRepository = new AutomarkeJpaRepository();
