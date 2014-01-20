@@ -9,6 +9,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import at.haas.reparaturcenter.ensure.Ensure;
+
 @Entity
 @Table(name = "reparatur")
 public class Reparatur extends BasePersistable{
@@ -51,9 +53,18 @@ public class Reparatur extends BasePersistable{
 	@ManyToOne
 	private Automarke automarke;
 	
+	protected Reparatur() {
+        // required for JPA
+    }
+	
 	public Reparatur(int rId, double preis, double selbstkosten, Date eingangsdatum,
 						Date retourgabedatum, int reparaturen, int services, Kunde kunde,
 						Mitarbeiter mitarbeiter, Automarke automarke){
+		Ensure.notNull("eingangsdatum", eingangsdatum);
+		Ensure.notNull("reourgabedatum", retourgabedatum);
+		Ensure.notNull("kunde", kunde);
+		Ensure.notNull("mitarbeiter", mitarbeiter);
+		Ensure.notNull("automarke", automarke);
 		setRId(rId);
 		setPreis(preis);
 		setSelbstkosten(selbstkosten);

@@ -6,6 +6,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import at.haas.reparaturcenter.ensure.Ensure;
+
 @Entity
 @Table(name = "Person")
 public class Person extends BasePersistable{
@@ -17,7 +19,12 @@ public class Person extends BasePersistable{
     @Column(name = "name", nullable = false, length = 30)
 	private String name;
 	
+	protected Person() {
+        // required for JPA
+    }
+	
 	public Person(String name){
+		Ensure.notEmpty("name", name);
 		setName(name);
 	}
 	

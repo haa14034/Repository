@@ -1,13 +1,15 @@
 package at.haas.reparaturcenter.domain;
 
+import java.util.ArrayList;
 import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import at.haas.reparaturcenter.ensure.Ensure;
 
 @Entity
 @Table(name = "automarke")
@@ -32,10 +34,17 @@ public class Automarke extends BasePersistable {
 	@OneToMany(targetEntity=Reparatur.class, mappedBy="automarke")
 	private Collection<Reparatur> reparaturen;
 	
+	protected Automarke() {
+        // required for JPA
+    }
+	
 	public Automarke(String marke, String gruppe, int anfangsjahrgang){
+		Ensure.notEmpty("marke", marke);
+		Ensure.notEmpty("gruppe", gruppe);
 		setMarke(marke);
 		setGruppe(gruppe);
 		setAnfangsjahrgang(anfangsjahrgang);
+		this.reparaturen = new ArrayList<Reparatur>();
 	}
 
 	public String getMarke() {

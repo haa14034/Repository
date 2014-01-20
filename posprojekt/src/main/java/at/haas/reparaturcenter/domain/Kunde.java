@@ -1,5 +1,6 @@
 package at.haas.reparaturcenter.domain;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -8,6 +9,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import at.haas.reparaturcenter.ensure.Ensure;
 
 @Entity
 @Table(name = "kunde")
@@ -35,12 +38,19 @@ public class Kunde extends Person{
 	@OneToMany(targetEntity=Reparatur.class, mappedBy="kunde")
 	private Collection<Reparatur> reparaturen;
 	
+	protected Kunde() {
+        // required for JPA
+    }
+	
 	public Kunde(int kId, String name, String adresse, int plz, boolean geschlecht){
 		super(name);
+		Ensure.notEmpty("name", name);
+		Ensure.notEmpty("adresse", adresse);
 		setKid(kId);
 		setAdresse(adresse);
 		setPlz(plz);
 		setGeschlecht(geschlecht);
+		this.reparaturen = new ArrayList<Reparatur>();
 	}
 
 	public int getKId() {
