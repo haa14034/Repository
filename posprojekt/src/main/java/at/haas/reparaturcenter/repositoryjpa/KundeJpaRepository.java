@@ -10,7 +10,6 @@ import at.haas.reparaturcenter.domain.Kunde;
 
 @Repository
 public class KundeJpaRepository extends AbstractJpaRepository<Kunde> {
-	@Autowired
 	
 	public List<Kunde> findAll() {
         return entityManager().createQuery("SELECT k FROM Kunde k", Kunde.class).getResultList();

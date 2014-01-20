@@ -1,4 +1,4 @@
-package at.haas.reparaturcenter.repository.impl;
+package at.haas.reparaturcenter.repository;
 
 import java.util.List;
 

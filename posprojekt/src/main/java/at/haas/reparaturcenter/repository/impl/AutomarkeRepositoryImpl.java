@@ -13,6 +13,7 @@ import javax.persistence.criteria.Root;
 //import com.mysema.query.jpa.impl.JPAQuery;
 import at.haas.reparaturcenter.domain.Automarke;
 //import at.haas.reparaturcenter.domain.QAutomarke;
+import at.haas.reparaturcenter.repository.AutomarkeRepositoryCustom;
 
 public class AutomarkeRepositoryImpl implements AutomarkeRepositoryCustom{
 

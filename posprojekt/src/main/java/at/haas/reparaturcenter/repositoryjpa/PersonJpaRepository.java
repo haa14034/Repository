@@ -11,7 +11,6 @@ import at.haas.reparaturcenter.domain.Person;
 
 @Repository
 public class PersonJpaRepository extends AbstractJpaRepository<Person> {
-	@Autowired
 	
 	public List<Person> findAll() {
         return entityManager().createQuery("SELECT p FROM Person p", Person.class).getResultList();

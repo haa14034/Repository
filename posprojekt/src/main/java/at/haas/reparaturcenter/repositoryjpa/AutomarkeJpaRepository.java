@@ -10,7 +10,6 @@ import at.haas.reparaturcenter.domain.Automarke;
 
 @Repository
 public class AutomarkeJpaRepository extends AbstractJpaRepository<Automarke> {
-	@Autowired
 	
 	public List<Automarke> findAll() {
         return entityManager().createQuery("SELECT am FROM Automarke am", Automarke.class).getResultList();

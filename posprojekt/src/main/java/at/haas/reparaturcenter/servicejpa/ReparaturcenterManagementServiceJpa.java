@@ -1,12 +1,13 @@
 package at.haas.reparaturcenter.servicejpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import at.haas.reparaturcenter.domain.Kunde;
 import at.haas.reparaturcenter.repositoryjpa.KundeJpaRepository;
 import at.haas.reparaturcenter.repositoryjpa.MitarbeiterJpaRepository;
 
-
+@Service
 public class ReparaturcenterManagementServiceJpa implements ServiceJpa {
 
     @Autowired

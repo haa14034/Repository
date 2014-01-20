@@ -11,7 +11,6 @@ import at.haas.reparaturcenter.domain.Reparatur;
 
 @Repository
 public class ReparaturJpaRepository extends AbstractJpaRepository<Reparatur> {
-	@Autowired
 	
 	public List<Reparatur> findAll() {
         return entityManager().createQuery("SELECT r FROM Reparatur r", Reparatur.class).getResultList();
