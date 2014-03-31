@@ -24,9 +24,9 @@ public class AutomarkeForm extends Form<Automarke> {
 
     public AutomarkeForm(String id) {
         super(id, new CompoundPropertyModel<Automarke>(new Automarke("Nissan", "Renault-Nissan", 1980)));
-        add(new TextField<>("marke"));
-        add(new TextField<>("gruppe"));
-        add(new TextField<>("anfangsjahrgang"));
+        add(new TextField<Automarke>("marke"));
+        add(new TextField<Automarke>("gruppe"));
+        add(new TextField<Automarke>("anfangsjahrgang"));
     }
 
     @Override
