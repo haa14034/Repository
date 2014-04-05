@@ -1,4 +1,4 @@
-
+/**
 package at.haas.reparaturcenter.rest;
 
 import org.junit.runner.RunWith;
@@ -11,7 +11,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ContextConfiguration(loader = AnnotationConfigWebContextLoader.class, classes = RestApplicationConfig.class)
 @WebAppConfiguration
 public class ReparaturcenterApiTest {
-/**
     @Resource
     private WebApplicationContext webApplicationContext;
 
@@ -37,5 +36,5 @@ public class ReparaturcenterApiTest {
                                 content("{\"shortName\":\"GRJ\", \"name\":\"Joachim Grüneis\", \"birthDate\":\"1971-05-10\"}")).
                 andExpect(status().isCreated());
     }
- */
 }
+ */
